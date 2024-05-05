@@ -1,6 +1,6 @@
 on: push
 jobs:
-  build:
+  security:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -8,6 +8,9 @@ jobs:
         uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  build:
+    runs-on: ubuntu-latest
+    steps:
       - run: make setup
       - run: make build
       - run: make lint
